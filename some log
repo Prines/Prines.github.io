@@ -338,3 +338,19 @@ Impl模式         class前置声明  但是不能直接调用方法
 
 
 Nagle 会等待满了在一起发送出去，关闭之后就会有发的就发出去了
+
+将redis用做缓存是一种非常常见的手段，然而由于内存大小的限制，会导致redis在内存空间满了以后需要处理继续存入的数据。总计有以下几种策略：
+volatile-ttl：在设置了过期时间的数据集里，淘汰离过期时间最近的key。
+volatile-random：在设置了过期时间的数据集里，淘汰任意一个key。
+volatile-lru：在设置了过期时间的数据集里，淘汰最近最不常使用的key。
+allkeys-random：在所有数据集里，淘汰任意一个key。
+allkeys-lru：在所有数据集里，淘汰最近最不常使用的key。
+noeviction：返回报错。
+
+协议，本地地址，本地端口号，远地地址，远地端口号
+
+new placementnew nothrownew
+new (std::nothrow) Manager();
+listen backlog  全连接队列数目（socket）
+somaxconn 内核级别队列长度
+半连接队列长度 = min(backlog, 内核参数 net.core.somaxconn，内核参数 tcp_max_syn_backlog) 半连接队列长度是不能超过全连接队列长度的
